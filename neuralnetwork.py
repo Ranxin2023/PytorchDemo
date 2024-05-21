@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import torch.utils.data as DataLoader
 import torchvision.datasets as datasets
 import torchvision.transforms as transforms
+from torch.utils.data import DataLoader
 
 
 class NN(nn.Module):
@@ -31,14 +31,41 @@ input_size = 784
 num_classes = 10
 learning_rate = 0.001
 batch_size = 64
-num_epoch = 1
+num_epochs = 1
 
 # Load Data
 train_dataset = datasets.MNIST(
     root="./dataset", train=True, transform=transforms.ToTensor(), download=True
 )
-train_loader = DataLoader(datasets=train_dataset, batch_size=batch_size, shuffle=True)
+train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True)
 test_dataset = datasets.MNIST(
     root="./dataset", train=True, transform=transforms.ToTensor(), download=True
 )
-test_loader = DataLoader(datasets=train_dataset, batch_size=batch_size, shuffle=True)
+test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=True)
+
+# initialize network
+model = NN(input_size=input_size, num_classes=num_classes).to(device=device)
+
+# loss and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+# Train Network
+for epoch in range(num_epochs):
+    for batch_idx, (data, targets) in enumerate(train_loader):
+        data = data.to(device=device)
+        targets = targets.to(device=device)
+
+        # print(f"the shape of data is {data.shape}")
+        # reshape
+        data = data.reshape(data.shape[0], -1)
+
+        # forward
+        scores = model(data)
+        loss = criterion(scores, targets)
+
+        # backward
+        optimizer.zero_grad()
+        loss.backward()
+
+        optimizer.step()
