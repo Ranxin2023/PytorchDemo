@@ -69,3 +69,16 @@ for epoch in range(num_epochs):
         loss.backward()
 
         optimizer.step()
+
+
+def check_accuracy(loader, model):
+    num_correct = 0
+    num_samples = 0
+    model.eval()
+    with torch.no_grad():
+        for x, y in loader:
+            x = x.to(device=device)
+            y = y.to(device=device)
+            x = x.reshape(x.shape[0], -1)
+            scores = model(x)
+            _, predictions = scores.max(1)
