@@ -29,7 +29,7 @@ def training_cnn():
     train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
 
     # Training loop
-    for epoch in range(1000):
+    for epoch in range(50):
         for inputs, labels in train_loader:
             outputs = model(inputs)
             loss = criterion(outputs, labels)
