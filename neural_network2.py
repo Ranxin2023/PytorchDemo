@@ -1,17 +1,16 @@
+import torch
 import torch.nn as nn
-class NeuralNetwork(nn.Module):
+import torch.nn.functional as F
+
+class Net2(nn.Module):
     def __init__(self):
-        super().__init__()
-        self.flatten = nn.Flatten()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(28*28, 512),
-            nn.ReLU(),
-            nn.Linear(512, 512),
-            nn.ReLU(),
-            nn.Linear(512, 10),
-        )
+        super(Net2, self).__init__()
+        self.fc1 = nn.Linear(28*28, 128)  # MNIST: 28x28 input
+        self.fc2 = nn.Linear(128, 10)     # 10 output classes
 
     def forward(self, x):
-        x = self.flatten(x)
-        logits = self.linear_relu_stack(x)
-        return logits
+        x = x.view(-1, 28*28)  # flatten
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
