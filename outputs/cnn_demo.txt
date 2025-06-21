@@ -1,0 +1,83 @@
+training CNN......
+Downloading http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz to ./data\MNIST\raw\train-images-idx3-ubyte.gz
+Extracting ./data\MNIST\raw\train-images-idx3-ubyte.gz to ./data\MNIST\raw
+
+Downloading http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz to ./data\MNIST\raw\train-labels-idx1-ubyte.gz
+Extracting ./data\MNIST\raw\train-labels-idx1-ubyte.gz to ./data\MNIST\raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz to ./data\MNIST\raw\t10k-images-idx3-ubyte.gz
+Extracting ./data\MNIST\raw\t10k-images-idx3-ubyte.gz to ./data\MNIST\raw
+
+Downloading http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz
+Failed to download (trying next):
+HTTP Error 404: Not Found
+
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz
+Downloading https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz
+Extracting ./data\MNIST\raw\t10k-labels-idx1-ubyte.gz to ./data\MNIST\raw
+
+Epoch 1, Loss: 0.38353264331817627
+Epoch 2, Loss: 0.27212366461753845
+Epoch 3, Loss: 0.42113542556762695
+Epoch 4, Loss: 0.10804235190153122
+Epoch 5, Loss: 0.038798656314611435
+Epoch 6, Loss: 0.13207083940505981
+Epoch 7, Loss: 0.19798409938812256
+Epoch 8, Loss: 0.015151530504226685
+Epoch 9, Loss: 0.05455564334988594
+Epoch 10, Loss: 0.13391074538230896
+Epoch 11, Loss: 0.032171010971069336
+Epoch 12, Loss: 0.036934927105903625
+Epoch 13, Loss: 0.0759916678071022
+Epoch 14, Loss: 0.009126801043748856
+Epoch 15, Loss: 0.003949932754039764
+Epoch 16, Loss: 0.010787841863930225
+Epoch 17, Loss: 0.11531664431095123
+Epoch 18, Loss: 0.007128087338060141
+Epoch 19, Loss: 0.040935639292001724
+Epoch 20, Loss: 0.03607065975666046
+Epoch 21, Loss: 0.15026545524597168
+Epoch 22, Loss: 0.05202239006757736
+Epoch 23, Loss: 0.019728684797883034
+Epoch 24, Loss: 0.2680366039276123
+Epoch 25, Loss: 0.023876845836639404
+Epoch 26, Loss: 0.005407028831541538
+Epoch 27, Loss: 0.007921023294329643
+Epoch 28, Loss: 0.045002639293670654
+Epoch 29, Loss: 0.0028282536659389734
+Epoch 30, Loss: 0.08749490976333618
+Epoch 31, Loss: 0.00564089510589838
+Epoch 32, Loss: 0.0012473528040573
+Epoch 33, Loss: 0.24713262915611267
+Epoch 34, Loss: 0.001518127741292119
+Epoch 35, Loss: 0.006017020903527737
+Epoch 36, Loss: 0.001956034218892455
+Epoch 37, Loss: 0.00839454960078001
+Epoch 38, Loss: 0.03411063924431801
+Epoch 39, Loss: 0.00184442603494972
+Epoch 40, Loss: 0.00796397216618061
+Epoch 41, Loss: 0.006942677311599255
+Epoch 42, Loss: 0.009160736575722694
+Epoch 43, Loss: 0.007158149965107441
+Epoch 44, Loss: 0.013837688602507114
+Epoch 45, Loss: 0.033184293657541275
+Epoch 46, Loss: 0.005824622232466936
+Epoch 47, Loss: 0.00010842722258530557
+Epoch 48, Loss: 0.032730333507061005
+Epoch 49, Loss: 0.017326785251498222
+Epoch 50, Loss: 0.01952086016535759
