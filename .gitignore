@@ -1,3 +1,4 @@
 data/MNIST/
 dataset/MNIST/
 **/__pycache__/
+*.pyc
