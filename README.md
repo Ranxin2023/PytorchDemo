@@ -46,3 +46,36 @@ self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
     - **Pooling layers** to reduce size + computation
 
     - **Fully connected layers** at the end for classification.
+
+## Coding Explanation
+### 1. Neural Network
+Full Code:
+```python
+class Net2(nn.Module):
+    def __init__(self):
+        super(Net2, self).__init__()
+        self.fc1 = nn.Linear(28*28, 128)  # MNIST: 28x28 input
+        self.fc2 = nn.Linear(128, 10)     # 10 output classes
+
+    def forward(self, x):
+        x = x.view(-1, 28*28)  # flatten
+        x = F.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+```
+Detailed explanation:
+`class Net2(nn.Module):`
+This defines your model `Net2`, which inherits from `nn.Module` — the base class for all neural networks in PyTorch.
+
+```python
+self.fc1 = nn.Linear(28*28, 128)
+
+```
+➡ fc1 = fully connected layer (dense layer)
+➡ Takes input size 28*28 = 784 (MNIST image flattened)
+➡ Outputs 128 features
+
+```python
+self.fc2 = nn.Linear(128, 10)
+```
