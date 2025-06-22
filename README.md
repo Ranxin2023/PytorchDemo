@@ -47,6 +47,14 @@ self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
 
     - **Fully connected layers** at the end for classification.
 
+### 5. Transfer Learning
+
+### 6. ResNet-18?
+#### 💡 What is ResNet-18?
+- **ResNet-18** is a deep **convolutional neural network (CNN)** architecture that was introduced by Microsoft Research in the 2015 paper:
+- `"Deep Residual Learning for Image Recognition"` by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun.
+- The **“18”** refers to **the number of layers with learnable weights** in the network (18 layers = 17 convolutional + 1 fully connected layer).
+#### 
 ## Coding Explanation
 ### 1. Neural Network
 Full Code:
@@ -79,3 +87,38 @@ self.fc1 = nn.Linear(28*28, 128)
 ```python
 self.fc2 = nn.Linear(128, 10)
 ```
+
+### 3. Transfer Learning
+
+#### 📌 Import libraries：
+```python
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torchvision import datasets, transforms, models
+from torch.utils.data import DataLoader
+
+```
+
+➡ Import:
+
+- PyTorch core + neural network (nn) + optimizer (optim)
+
+- torchvision for datasets (CIFAR-10), transforms (preprocessing), models (pre-trained models)
+
+- DataLoader to batch and shuffle data
+
+#### 📌 Load pre-trained model
+```python
+model = models.resnet18(pretrained=True)
+```
+- Load a ResNet-18 model with weights trained on ImageNet.
+- This gives a strong starting point (transfer learning).
+
+#### 📌 Replace final layer
+```python
+model = models.resnet18(pretrained=True)
+
+```
+
+#### 
