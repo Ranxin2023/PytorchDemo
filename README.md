@@ -48,13 +48,69 @@ self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
     - **Fully connected layers** at the end for classification.
 
 ### 5. Transfer Learning
+#### 💡 What is Transfer Learning?
+- Transfer learning is a machine learning technique where:
+    - We reuse a model that was already trained on one task
+    - And adapt it to a new but related task
 
+#### 🧠 Core idea
+- Instead of training a model from scratch (which can take lots of data + time):
+
+    - You take a model trained on a large dataset (e.g., ImageNet with millions of images).
+    - You keep most of the model’s learned features (filters, weights).
+    - You modify (or fine-tune) the last few layers to match your new task (e.g., classifying cats/dogs, or CIFAR-10).
+
+#### 🌟 Why does it work?
+- Early layers in deep networks learn **generic features** (e.g., edges, textures, shapes)
+- Later layers learn **task-specific features**:
+    - Keep early layers (they detect general patterns)
+    - Change/adjust later layers for your specific problem
+
+#### 📌 Example
+- Imagine:
+    - A ResNet-18 trained on ImageNet (1000 categories)
+    - You want to classify 10 types of flowers
+    -  Instead of starting from random weights:
+        - Load the ResNet-18 pretrained model
+        - Replace the final classifier layer to output 10 classes
+        - Fine-tune this new model on your flower dataset
+    - This saves time and often achieves better accuracy, especially when your dataset is small!
+
+#### Feature extraction
+| Approach               | What happens                                                 |
+| ---------------------- | ------------------------------------------------------------ |
+| **Feature extraction** | Freeze all base layers; only train final classifier          |
+| **Fine-tuning**        | Unfreeze some/all base layers; continue training with low LR |
+
+#### Difference between normal learning and transfer learning
+- In transfer learning:
+    - You **start with a model that’s already been trained** on a large dataset (e.g. ImageNet)
+    - You reuse **the learned features** (weights) from that model
+    - You reuse the learned features (weights) from that model
 ### 6. ResNet-18?
 #### 💡 What is ResNet-18?
 - **ResNet-18** is a deep **convolutional neural network (CNN)** architecture that was introduced by Microsoft Research in the 2015 paper:
 - `"Deep Residual Learning for Image Recognition"` by Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun.
 - The **“18”** refers to **the number of layers with learnable weights** in the network (18 layers = 17 convolutional + 1 fully connected layer).
 #### 
+
+### 7. Loss Function
+####  What is a loss function?
+- A **loss function** is a general term.
+    -  It measures **how far off** your model’s prediction is from the true target.
+- The purpose of any loss function:
+    - Quantify the error
+    - Guide the model’s learning (via backpropagation + gradient descent)
+- Example loss functions:
+    - `CrossEntropyLoss` (for classification)
+    - `MSELoss` (Mean Squared Error, for regression)
+    - `L1Loss` (Mean Absolute Error)
+- What is CrossEntropyLoss?
+    - `CrossEntropyLoss` is one specific type of loss function.
+    -  It is designed for:
+        - Multi-class classification tasks
+        - It combines LogSoftmax + Negative Log-Likelihood Loss (NLLLoss) in one
+        
 ## Coding Explanation
 ### 1. Neural Network
 Full Code:
@@ -120,5 +176,63 @@ model = models.resnet18(pretrained=True)
 model = models.resnet18(pretrained=True)
 
 ```
+- Original ResNet-18 ends with model.fc → output 1000 classes (ImageNet).
+- We replace it with a new layer:
 
-#### 
+    - Input = same as original `model.fc` input
+
+    - Output = 10 (CIFAR-10 classes)
+
+
+#### 📌 Freeze early layers
+```python 
+for param in model.parameters():
+    param.requires_grad = False
+
+```
+- Freeze all layers → prevent updates during training.
+- Useful when we want to only train the classifier (final layer).
+```python
+for param in model.fc.parameters():
+    param.requires_grad = True
+
+```
+#### 📌 Data transforms
+```python
+transform = transforms.Compose([
+    transforms.Resize(224),
+    transforms.ToTensor(),
+])
+
+```
+- Define preprocessing:
+
+    - Resize CIFAR-10 (32×32) images to 224×224 (ResNet-18 expects 224×224)
+
+    - Convert PIL Image → PyTorch Tensor
+
+
+#### 📌 Load CIFAR-10 dataset
+```python
+train_dataset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+```
+
+- Load CIFAR-10 training data
+- Apply the transform
+- DataLoader batches = 32, shuffles the data
+
+```python
+val_dataset = datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+val_loader = DataLoader(val_dataset, batch_size=32)
+```
+- Load CIFAR-10 validation/test data
+
+#### 📌 Define loss + optimizer
+```python
+criterion = nn.CrossEntropyLoss()
+```
+CrossEntropyLoss combines:
+- Softmax + negative log-likelihood
+- Perfect for multi-class classification
+
