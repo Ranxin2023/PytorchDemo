@@ -1,4 +1,9 @@
 # Pytorch Demo
+## Table of Contents
+- [Concepts](#concepts)
+    - [Pytorch](#1pytorch)
+    - [Tensor](#2-tensor)
+- [Packages]()
 ## Concepts
 ### 1.PyTorch
 - PyTorch is an open-source deep learning framework that provides:
@@ -110,7 +115,11 @@ self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
     -  It is designed for:
         - Multi-class classification tasks
         - It combines LogSoftmax + Negative Log-Likelihood Loss (NLLLoss) in one
-        
+
+### 8. FashionMNIST
+#### What is FashionMNIST?
+- FashionMNIST is a dataset of **grayscale clothing images**, designed to be a drop-in replacement for the original MNIST digit dataset.
+- 
 ## Coding Explanation
 ### 1. Neural Network
 Full Code:
@@ -236,3 +245,4 @@ CrossEntropyLoss combines:
 - Softmax + negative log-likelihood
 - Perfect for multi-class classification
 
+## Packages
