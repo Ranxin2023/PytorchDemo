@@ -119,7 +119,37 @@ self.conv2 = nn.Conv2d(16, 32, 3, padding=1)
 ### 8. FashionMNIST
 #### What is FashionMNIST?
 - FashionMNIST is a dataset of **grayscale clothing images**, designed to be a drop-in replacement for the original MNIST digit dataset.
+- It contains:
+    - 60,000 training images
+    - 10,000 test images
+    - Image size: 28 × 28
+    - 1 channel (grayscale)
+- Each image shows a clothing item, such as a shoe or a shirt.
+#### Why FashionMNIST was created
 - 
+### 9. CIFAR-10 Classes
+#### Overview
+- CIFAR-10 is a dataset of **real-world color images**, originally collected by the Canadian Institute for Advanced Research (CIFAR).
+- It contains:
+    - 50,000 training images
+    - 10,000 test images
+    - Image size: 32 × 32
+    - 3 channels (RGB color)
+- These are small but diverse natural images.
+- CIFAR-10 Classes
+|**Label**| **Class**|**Example**|
+| ------- | -------- | --------- |
+| 0       | Airplane   | ✈️      |
+| 1       | Automobile | 🚗      |
+| 2       | Bird       | 🐦      |
+| 3       | Cat        | 🐱      |
+| 4       | Deer       | 🦌      |
+| 5       | Dog        | 🐕      |
+| 6       | Frog       | 🐸      |
+| 7       | Horse      | 🐎      |
+| 8       | Ship       | 🚢      |
+| 9       | Truck      | 🚛      |
+
 ## Coding Explanation
 ### 1. Neural Network
 Full Code:
@@ -246,3 +276,19 @@ CrossEntropyLoss combines:
 - Perfect for multi-class classification
 
 ## Packages
+### 1. NumPy (<2)
+#### What it is
+- NumPy is the fundamental scientific computing library for Python.
+#### Why you need it
+- PyTorch internally interacts with NumPy a lot, especially when converting between:
+    - PyTorch tensors ↔ NumPy arrays
+    - Dataset preprocessing
+    - Visualization and debugging
+### Summary Table
+| Package         | Purpose                      | Why Needed                                        |
+| --------------- | ---------------------------- | ------------------------------------------------- |
+| **numpy<2**     | Math arrays, vector ops      | Required by PyTorch + matplotlib                  |
+| **torch**       | Deep learning engine         | Core of dataset, tensors, DataLoader              |
+| **torchvision** | Vision datasets & transforms | Required for FashionMNIST, ToTensor, decode_image |
+| **torchaudio**  | Audio tools                  | Not used here but version-matched; optional       |
+| **matplotlib**  | Plotting images              | Required for dataset visualization                |
